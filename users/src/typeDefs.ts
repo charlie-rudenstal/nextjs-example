@@ -10,6 +10,9 @@ const typeDefs = gql`
     id: String
     name: String
   }
+  type Mutation {
+    createUser(name: String): User
+  }
 `;
 
 export default typeDefs;

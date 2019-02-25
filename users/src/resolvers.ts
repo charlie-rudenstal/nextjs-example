@@ -5,6 +5,9 @@ const resolvers = {
     users: () => store.getAllUsers(),
     user: (_, args) => store.getUser(args.id),
     me: () => null,
+  },
+  Mutation: {
+    createUser: (_, args) => store.createUser(args.name),
   }
 };
 
