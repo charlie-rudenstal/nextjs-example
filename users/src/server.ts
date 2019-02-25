@@ -1,9 +1,10 @@
-// weird import because express exports commonjs and this is typescript
-import express = require('express');
-const app = express();
+import { ApolloServer } from 'apollo-server';
+import typeDefs from './typeDefs';
+import resolvers from './resolvers';
+import debug from 'debug';
+const log = debug('users');
 
-app.get('/ping', (req, res) => {
-  res.end('pong');
+const server = new ApolloServer({ typeDefs, resolvers });
+server.listen(8001).then(options => {
+  log(`Server listening at ${options.url}`);
 });
-
-app.listen(8001);
