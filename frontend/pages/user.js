@@ -3,7 +3,7 @@ import gql from "graphql-tag";
 import { withRouter } from 'next/router';
 import Playlists from "../components/playlists";
 
-function user({ router }) {
+export function User({ router }) {
   if (!router.query.id) return 'No id query parameter specified';
   const userId = router.query.id;
 
@@ -12,7 +12,7 @@ function user({ router }) {
       {({ loading, error, data }) => (
         <>
           { loading ? 'Loading...' :
-            error ? 'Error fetching user' :
+            error ? 'Error fetching user: ' + error :
             !data.user ? 'User not found' :
             <div>
               <div>Id: {data.user.id}</div>
@@ -27,7 +27,7 @@ function user({ router }) {
   )
 }
 
-const GET_USER = gql`
+export const GET_USER = gql`
   query GetUser($userId: ID!) {
     user(id: $userId) {
       id
@@ -36,4 +36,4 @@ const GET_USER = gql`
   }
 `
 
-export default withRouter(user);
+export default withRouter(User);
