@@ -62,7 +62,7 @@ function createApolloClient(initialState) {
     connectToDevTools: !isServer,
     link: ApolloLink.from([
       onError(errors => {
-        if (errors.graphQLErrors) console.log('[GraphQL errors] ', errors.graphQLErrors.join(' '));
+        if (errors.graphQLErrors) console.log('[GraphQL errors] ', errors.graphQLErrors.map(({message}) => message).join(', '));
         if (errors.networkError) console.log('[Network error] ', errors.networkError);
       }),
       new HttpLink({ uri: 'http://localhost:8002', fetch, credentials: 'same-origin' }),

@@ -10,9 +10,9 @@ export default function index(props) {
           { loading ? 'Loading...' :
             <ul>
               {data.users.map(user =>
-                <li>
+                <li key={user.id}>
                   <Link href={`/user?id=${user.id}`}>
-                    {user.name}
+                    <a>{user.name}</a>
                   </Link>
                 </li>
               )}

@@ -1,3 +1,5 @@
+// Users
+
 type User = {
   id: String,
   name: String
@@ -27,8 +29,25 @@ function createUser(name: String) : User {
   return user;
 }
 
+// Playlists
+
+type Playlist = {
+  uri: String,
+  title: String,
+  userId: String
+}
+
+const playlists : Playlist[] = [
+  { title: 'My first playlist', uri: 'spotify:playlist:xyz', userId: '1' }
+];
+
+function getPlaylists(userId: String) : Playlist[] {
+  return playlists.filter(playlist => playlist.userId == userId);
+}
+
 export default {
   getAllUsers,
   getUser,
-  createUser
+  createUser,
+  getPlaylists
 };
