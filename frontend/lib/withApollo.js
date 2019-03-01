@@ -2,7 +2,8 @@ import React from 'react';
 import { ApolloClient } from 'apollo-client';
 import { onError } from 'apollo-link-error';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import { HttpLink, createHttpLink } from 'apollo-link-http';
+import { HttpLink } from 'apollo-link-http';
+import { BatchHttpLink } from 'apollo-link-batch-http';
 import { ApolloLink } from 'apollo-link';
 import Head from 'next/head';
 import fetch from 'node-fetch';
@@ -65,7 +66,8 @@ function createApolloClient(initialState) {
         if (errors.graphQLErrors) console.log('[GraphQL errors] ', errors.graphQLErrors.map(({message}) => message).join(', '));
         if (errors.networkError) console.log('[Network error] ', errors.networkError);
       }),
-      new HttpLink({ uri: 'http://localhost:8002', fetch, credentials: 'same-origin' }),
+      // new HttpLink({ uri: 'http://localhost:8002', fetch, credentials: 'same-origin' }),
+      new BatchHttpLink({ uri: 'http://localhost:8002', fetch, credentials: 'same-origin', batchInterval: 50 }),
     ]),
     cache: new InMemoryCache().restore(initialState || {})
   });
