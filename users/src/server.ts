@@ -4,7 +4,7 @@ import resolvers from './resolvers';
 import debug from 'debug';
 const log = debug('users');
 
-const server = new ApolloServer({ typeDefs, resolvers });
-server.listen(8001).then(options => {
+const server = new ApolloServer({ typeDefs, resolvers, cors: true });
+server.listen(8002).then(options => {
   log(`Server listening at ${options.url}`);
 });
