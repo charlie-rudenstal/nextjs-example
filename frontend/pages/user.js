@@ -17,9 +17,9 @@ function user({ router }) {
             <div>
               <div>Id: {data.user.id}</div>
               <div>Name: {data.user.name}</div>
-              <hr />
             </div>
           }
+          <hr />
           <Playlists userId={userId} />
         </>
       )}

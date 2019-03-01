@@ -38,7 +38,10 @@ type Playlist = {
 }
 
 const playlists : Playlist[] = [
-  { title: 'My first playlist', uri: 'spotify:playlist:xyz', userId: '1' }
+  { title: 'My first playlist', uri: 'spotify:playlist:xyz', userId: '1' },
+  { title: 'My second playlist', uri: 'spotify:playlist:xyz2', userId: '1' },
+  { title: 'My third playlist', uri: 'spotify:playlist:xyz3', userId: '1' },
+  { title: 'My only playlist', uri: 'spotify:playlist:xyz4', userId: '2' },
 ];
 
 function getPlaylists(userId: String) : Playlist[] {
