@@ -66,6 +66,8 @@ function createApolloClient(initialState) {
         if (errors.graphQLErrors) console.log('[GraphQL errors] ', errors.graphQLErrors.map(({message}) => message).join(', '));
         if (errors.networkError) console.log('[Network error] ', errors.networkError);
       }),
+      // Batching or not batching
+      // Batching can be slower because all requests will be held back by the slowest query
       // new HttpLink({ uri: 'http://localhost:8002', fetch, credentials: 'same-origin' }),
       new BatchHttpLink({ uri: 'http://localhost:8002', fetch, credentials: 'same-origin', batchInterval: 50 }),
     ]),
